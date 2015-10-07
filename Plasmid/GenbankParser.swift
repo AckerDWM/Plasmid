@@ -116,6 +116,7 @@ class GenbankParser {
             // Split into individual location segments
             let segmentsToJoin = locationString.componentsSeparatedByString(",")
             for segment in segmentsToJoin {
+              println(segment)
               var newSegmentTouple: (start: Int, end: Int?, delimiter: String?, onCodingSequence: Bool) = (start: Int(), end: nil, delimiter: nil, onCodingSequence: true)
               if (segment as NSString).containsString("..>") {
                 newSegmentTouple.delimiter = "..>"
@@ -131,17 +132,22 @@ class GenbankParser {
               let numberMatches = numberRegex?.matchesInString(segment, options: nil, range: NSMakeRange(0, count(segment)))
               if let matches = numberMatches {
                 for (var i = 0; i < matches.count; i++) {
-                  var location = (locationString as NSString).substringWithRange(matches[i].range)
+                  var location = (segment as NSString).substringWithRange(matches[i].range)
                   if (location as NSString).containsString("^") {
                     let carrotRange = (location as NSString).rangeOfString("^")
                     location = (location as NSString).substringToIndex(carrotRange.location)
                     // Indicate that this is in between...........
                   }
-                  if i == 0 {
-                    println(location)
-                    newSegmentTouple.start = location.toInt()!
-                  } else {
-                    newSegmentTouple.end = location.toInt()!
+                  if location.toInt() != nil
+                  {
+                    if i == 0 {
+                      println(location)
+                      println(newSegmentTouple)
+                      println(location.toInt())
+                      newSegmentTouple.start = location.toInt()!
+                    } else {
+                      newSegmentTouple.end = location.toInt()
+                    }
                   }
                 }
               }
