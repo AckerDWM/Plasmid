@@ -8,90 +8,97 @@
 
 import UIKit
 
-class FileTableVCTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+class FileTableVCTableViewController: UITableViewController
+{
+  
+  var files: [DBPath] = []
+  {
+    didSet(oldVal)
+    {
+      self.tableView.reloadData()
     }
+  }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+
+    self.clearsSelectionOnViewWillAppear = false
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    // load list of usable files
+    self.loadDropboxFileList()
+  }
+
+  // MARK: - Table view delegate
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let path = files[indexPath.row]
+    DropboxManager.openFile(path) {
+      contents in
+      Global.activeSeqObject = GenbankParser.parseGenbank(contents)
+      NSNotificationCenter.defaultCenter().postNotificationName("newSeqObject", object: nil)
     }
+  }
+  
+  // MARK: - Table view data source
 
-    // MARK: - Table view data source
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+  {
+    return 1
+  }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  {
+    return self.files.count
+  }
+
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+  {
+    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+
+    // Configure the cell...
+    cell.textLabel?.text = self.files[indexPath.row].stringValue().lastPathComponent
+    
+    return cell
+  }
+
+  // Override to support editing the table view.
+  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+  {
+    if editingStyle == .Delete
+    {
+      // Delete the row from the data source
+      self.tableView.beginUpdates()
+      self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+      let path = self.files[indexPath.row]
+      self.files.removeAtIndex(indexPath.row)
+      DropboxManager.deleteFile(path)
+      { success in
+        if success
+        {
+          self.loadDropboxFileList()
+        }
+      }
+      self.tableView.endUpdates()
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+  }
+  
+  func loadDropboxFileList()
+  {
+    DropboxManager.listFiles() {
+      files in
+      var newFileList: [DBPath] = []
+      for file in files
+      {
+        let string = file.path.stringValue()
+        if string.hasSuffix(".gb") || string.hasSuffix(".fasta")
+        {
+          newFileList.append(file.path)
+        }
+      }
+      self.files = newFileList
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
+  }
 
 }

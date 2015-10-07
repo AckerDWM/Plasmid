@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+class Global
+{
+  
+  static var activeSeqObject = Seq()
+  
+  static var activeDBPath: DBPath?
+  
+}

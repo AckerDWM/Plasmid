@@ -8,12 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		BB19E2E11BC5BE5E0089C8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E2E01BC5BE5E0089C8C7 /* AppDelegate.swift */; };
-		BB19E2E31BC5BE5E0089C8C7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E2E21BC5BE5E0089C8C7 /* MasterViewController.swift */; };
-		BB19E2E51BC5BE5E0089C8C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E2E41BC5BE5E0089C8C7 /* DetailViewController.swift */; };
 		BB19E2E81BC5BE5E0089C8C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB19E2E61BC5BE5E0089C8C7 /* Main.storyboard */; };
 		BB19E2EA1BC5BE5E0089C8C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB19E2E91BC5BE5E0089C8C7 /* Images.xcassets */; };
 		BB19E2ED1BC5BE5E0089C8C7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB19E2EB1BC5BE5E0089C8C7 /* LaunchScreen.xib */; };
 		BB19E2F91BC5BE5E0089C8C7 /* PlasmidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E2F81BC5BE5E0089C8C7 /* PlasmidTests.swift */; };
+		BB19E3031BC5C4B50089C8C7 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E3021BC5C4B50089C8C7 /* MainVC.swift */; };
+		BB19E3051BC5C5A00089C8C7 /* DropboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E3041BC5C5A00089C8C7 /* DropboxManager.swift */; };
+		BB19E3071BC5C61A0089C8C7 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19E3061BC5C61A0089C8C7 /* Dropbox.framework */; };
+		BB19E3091BC5C6AC0089C8C7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19E3081BC5C6AC0089C8C7 /* CFNetwork.framework */; };
+		BB19E30B1BC5C6B70089C8C7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19E30A1BC5C6B70089C8C7 /* Security.framework */; };
+		BB19E30D1BC5C6C30089C8C7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19E30C1BC5C6C30089C8C7 /* SystemConfiguration.framework */; };
+		BB19E30F1BC5C6CE0089C8C7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19E30E1BC5C6CE0089C8C7 /* QuartzCore.framework */; };
+		BB19E3111BC5C6DD0089C8C7 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19E3101BC5C6DD0089C8C7 /* libc++.dylib */; };
+		BB19E3131BC5C6ED0089C8C7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19E3121BC5C6ED0089C8C7 /* libz.dylib */; };
+		BB19E3181BC5D30A0089C8C7 /* FileContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E3171BC5D30A0089C8C7 /* FileContainerVC.swift */; };
+		BB19E31A1BC5D3210089C8C7 /* FileTableVCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E3191BC5D3210089C8C7 /* FileTableVCTableViewController.swift */; };
+		BB19E31C1BC5D6AA0089C8C7 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E31B1BC5D6AA0089C8C7 /* Global.swift */; };
+		BB19E31F1BC5DE9B0089C8C7 /* GenbankParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E31D1BC5DE9B0089C8C7 /* GenbankParser.swift */; };
+		BB19E3201BC5DE9B0089C8C7 /* Seq.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E31E1BC5DE9B0089C8C7 /* Seq.swift */; };
+		BB19E3221BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt in Resources */ = {isa = PBXBuildFile; fileRef = BB19E3211BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +43,28 @@
 		BB19E2DB1BC5BE5E0089C8C7 /* Plasmid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plasmid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB19E2DF1BC5BE5E0089C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB19E2E01BC5BE5E0089C8C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BB19E2E21BC5BE5E0089C8C7 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		BB19E2E41BC5BE5E0089C8C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BB19E2E71BC5BE5E0089C8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB19E2E91BC5BE5E0089C8C7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BB19E2EC1BC5BE5E0089C8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		BB19E2F21BC5BE5E0089C8C7 /* PlasmidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlasmidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB19E2F71BC5BE5E0089C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB19E2F81BC5BE5E0089C8C7 /* PlasmidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlasmidTests.swift; sourceTree = "<group>"; };
+		BB19E3021BC5C4B50089C8C7 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		BB19E3041BC5C5A00089C8C7 /* DropboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxManager.swift; sourceTree = "<group>"; };
+		BB19E3061BC5C61A0089C8C7 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
+		BB19E3081BC5C6AC0089C8C7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		BB19E30A1BC5C6B70089C8C7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BB19E30C1BC5C6C30089C8C7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BB19E30E1BC5C6CE0089C8C7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BB19E3101BC5C6DD0089C8C7 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		BB19E3121BC5C6ED0089C8C7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		BB19E3141BC5C7930089C8C7 /* Plasmid-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plasmid-Bridging-Header.h"; sourceTree = "<group>"; };
+		BB19E3171BC5D30A0089C8C7 /* FileContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileContainerVC.swift; sourceTree = "<group>"; };
+		BB19E3191BC5D3210089C8C7 /* FileTableVCTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTableVCTableViewController.swift; sourceTree = "<group>"; };
+		BB19E31B1BC5D6AA0089C8C7 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		BB19E31D1BC5DE9B0089C8C7 /* GenbankParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenbankParser.swift; sourceTree = "<group>"; };
+		BB19E31E1BC5DE9B0089C8C7 /* Seq.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seq.swift; sourceTree = "<group>"; };
+		BB19E3211BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = genbankAppendixII_featureKeys.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +72,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB19E3131BC5C6ED0089C8C7 /* libz.dylib in Frameworks */,
+				BB19E3111BC5C6DD0089C8C7 /* libc++.dylib in Frameworks */,
+				BB19E30F1BC5C6CE0089C8C7 /* QuartzCore.framework in Frameworks */,
+				BB19E30D1BC5C6C30089C8C7 /* SystemConfiguration.framework in Frameworks */,
+				BB19E30B1BC5C6B70089C8C7 /* Security.framework in Frameworks */,
+				BB19E3091BC5C6AC0089C8C7 /* CFNetwork.framework in Frameworks */,
+				BB19E3071BC5C61A0089C8C7 /* Dropbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +95,13 @@
 		BB19E2D21BC5BE5E0089C8C7 = {
 			isa = PBXGroup;
 			children = (
+				BB19E3121BC5C6ED0089C8C7 /* libz.dylib */,
+				BB19E3101BC5C6DD0089C8C7 /* libc++.dylib */,
+				BB19E30E1BC5C6CE0089C8C7 /* QuartzCore.framework */,
+				BB19E30C1BC5C6C30089C8C7 /* SystemConfiguration.framework */,
+				BB19E30A1BC5C6B70089C8C7 /* Security.framework */,
+				BB19E3081BC5C6AC0089C8C7 /* CFNetwork.framework */,
+				BB19E3061BC5C61A0089C8C7 /* Dropbox.framework */,
 				BB19E2DD1BC5BE5E0089C8C7 /* Plasmid */,
 				BB19E2F51BC5BE5E0089C8C7 /* PlasmidTests */,
 				BB19E2DC1BC5BE5E0089C8C7 /* Products */,
@@ -79,13 +120,20 @@
 		BB19E2DD1BC5BE5E0089C8C7 /* Plasmid */ = {
 			isa = PBXGroup;
 			children = (
+				BB19E31B1BC5D6AA0089C8C7 /* Global.swift */,
 				BB19E2E01BC5BE5E0089C8C7 /* AppDelegate.swift */,
-				BB19E2E21BC5BE5E0089C8C7 /* MasterViewController.swift */,
-				BB19E2E41BC5BE5E0089C8C7 /* DetailViewController.swift */,
+				BB19E3021BC5C4B50089C8C7 /* MainVC.swift */,
+				BB19E3171BC5D30A0089C8C7 /* FileContainerVC.swift */,
+				BB19E3191BC5D3210089C8C7 /* FileTableVCTableViewController.swift */,
+				BB19E3041BC5C5A00089C8C7 /* DropboxManager.swift */,
+				BB19E31D1BC5DE9B0089C8C7 /* GenbankParser.swift */,
+				BB19E31E1BC5DE9B0089C8C7 /* Seq.swift */,
+				BB19E3211BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt */,
 				BB19E2E61BC5BE5E0089C8C7 /* Main.storyboard */,
 				BB19E2E91BC5BE5E0089C8C7 /* Images.xcassets */,
 				BB19E2EB1BC5BE5E0089C8C7 /* LaunchScreen.xib */,
 				BB19E2DE1BC5BE5E0089C8C7 /* Supporting Files */,
+				BB19E3141BC5C7930089C8C7 /* Plasmid-Bridging-Header.h */,
 			);
 			path = Plasmid;
 			sourceTree = "<group>";
@@ -196,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB19E2E81BC5BE5E0089C8C7 /* Main.storyboard in Resources */,
+				BB19E3221BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt in Resources */,
 				BB19E2ED1BC5BE5E0089C8C7 /* LaunchScreen.xib in Resources */,
 				BB19E2EA1BC5BE5E0089C8C7 /* Images.xcassets in Resources */,
 			);
@@ -215,9 +264,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB19E2E51BC5BE5E0089C8C7 /* DetailViewController.swift in Sources */,
-				BB19E2E31BC5BE5E0089C8C7 /* MasterViewController.swift in Sources */,
+				BB19E3181BC5D30A0089C8C7 /* FileContainerVC.swift in Sources */,
+				BB19E31C1BC5D6AA0089C8C7 /* Global.swift in Sources */,
 				BB19E2E11BC5BE5E0089C8C7 /* AppDelegate.swift in Sources */,
+				BB19E31A1BC5D3210089C8C7 /* FileTableVCTableViewController.swift in Sources */,
+				BB19E3031BC5C4B50089C8C7 /* MainVC.swift in Sources */,
+				BB19E3201BC5DE9B0089C8C7 /* Seq.swift in Sources */,
+				BB19E3051BC5C5A00089C8C7 /* DropboxManager.swift in Sources */,
+				BB19E31F1BC5DE9B0089C8C7 /* GenbankParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,9 +400,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Plasmid/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Plasmid/Plasmid-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -356,9 +417,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Plasmid/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Plasmid/Plasmid-Bridging-Header.h";
 			};
 			name = Release;
 		};

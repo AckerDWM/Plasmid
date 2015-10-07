@@ -1,6 +1,6 @@
 //
-//  Parser.swift
-//  Test
+//  GenbankParser.swift
+//  Plasmid
 //
 //  Created by Daniel Acker on 9/3/15.
 //  Copyright (c) 2015 Daniel Acker. All rights reserved.
@@ -15,7 +15,8 @@ class GenbankParser {
   static let metadataPrefixes = ["LOCUS", "DEFINITION", "ACCESSION", "VERSION", "KEYWORDS", "SOURCE", "ORGANISM"]
   
   static func parseGenbankFeatureKeys() -> [String] {
-    let keysString = NSString(contentsOfFile: "/Users/danielacker/Desktop/genbankAppendixII_featureKeys.txt", encoding: NSUTF8StringEncoding, error: nil)
+    let keysPath = NSBundle.mainBundle().pathForResource("genbankAppendixII_featureKeys", ofType: "txt")
+    let keysString = NSString(contentsOfFile: keysPath!, encoding: NSUTF8StringEncoding, error: nil)
     let lines = keysString!.componentsSeparatedByCharactersInSet(.newlineCharacterSet())
     var keys: [String] = []
     for line in lines {
@@ -27,11 +28,10 @@ class GenbankParser {
     return keys
   }
   
-  static func parseGenbank(filePath: String) -> Seq {
+  static func parseGenbank(genbankString: String) -> Seq {
     var newSeq = Seq()
     let numberRegex = NSRegularExpression(pattern: "[0-9^]+", options: nil, error: nil)
-    let genbankString = NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding, error: nil)
-    var lines = genbankString!.componentsSeparatedByCharactersInSet(.newlineCharacterSet()) as! [String]
+    var lines = genbankString.componentsSeparatedByCharactersInSet(.newlineCharacterSet()) as [String]
     for (var i = 0; i < count(lines); i++) {
       lines[i] = lines[i].stringByTrimmingCharactersInSet(.whitespaceCharacterSet())
     }
@@ -138,9 +138,10 @@ class GenbankParser {
                     // Indicate that this is in between...........
                   }
                   if i == 0 {
+                    println(location)
                     newSegmentTouple.start = location.toInt()!
                   } else {
-                    newSegmentTouple.end = location.toInt()
+                    newSegmentTouple.end = location.toInt()!
                   }
                 }
               }

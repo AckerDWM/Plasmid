@@ -8,28 +8,27 @@
 
 import UIKit
 
-class FileContainerVC: UIViewController {
+class FileContainerVC: UIViewController
+{
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  @IBOutlet weak var textView: UITextView!
+  
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    self.navigationController?.navigationBarHidden = false
     
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTextView", name: "newSeqObject", object: nil)
+  }
+  
+  func updateTextView()
+  {
+    self.textView.text = Global.activeSeqObject.stringRepresentation
+  }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  @IBAction func linkDropboxBtn(sender: AnyObject)
+  {
+    DropboxManager.linkAccount(self)
+  }
 }
