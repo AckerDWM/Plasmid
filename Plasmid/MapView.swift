@@ -75,7 +75,8 @@ class MapView: UIView
           newArc.selected = true
         }
         // add color
-        // ...
+        let colorTouple = feature.color!
+        newArc.color = UIColor(hue: colorTouple.hue, saturation: colorTouple.saturation, brightness: colorTouple.brightness, alpha: 1)
         let new = newArc
         arcs.append(new)
       }
@@ -87,10 +88,10 @@ class MapView: UIView
       let path = UIBezierPath(arcCenter: centerPoint, radius: arcRadius, startAngle: arc.startRadians, endAngle: arc.endRadians, clockwise: true)
       if arc.selected
       {
-        path.moveToPoint(centerPoint)
+        path.addLineToPoint(centerPoint)
         path.closePath()
         arc.color.setFill()
-        path.stroke()
+        path.fill()
       }
       else
       {

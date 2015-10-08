@@ -140,19 +140,11 @@
 				BB19E2E01BC5BE5E0089C8C7 /* AppDelegate.swift */,
 				BB19E3021BC5C4B50089C8C7 /* MainVC.swift */,
 				BBA5F8141BC71A9700523EA9 /* FeatureVC.swift */,
-				BBA5F80E1BC719D800523EA9 /* AnnotateVC.swift */,
-				BBA5F8101BC71A0C00523EA9 /* TranslateVC.swift */,
-				BBA5F8121BC71A1800523EA9 /* InspectVC.swift */,
-				BB19E3171BC5D30A0089C8C7 /* FileContainerVC.swift */,
-				BB19E3191BC5D3210089C8C7 /* FileTableVCTableViewController.swift */,
-				BBA5F80A1BC6FEEA00523EA9 /* MapContainerContainerVC.swift */,
-				BBA5F80C1BC6FF5300523EA9 /* MapViewContainer.swift */,
-				BBA5F8161BC71BD400523EA9 /* MapFeatureListVC.swift */,
-				BBA5F8081BC5ECDE00523EA9 /* MapView.swift */,
+				BBA5F81A1BC72D2D00523EA9 /* Tools */,
+				BBA5F8191BC72D0700523EA9 /* File */,
+				BBA5F8181BC72CF600523EA9 /* Map */,
 				BB19E3041BC5C5A00089C8C7 /* DropboxManager.swift */,
-				BB19E31D1BC5DE9B0089C8C7 /* GenbankParser.swift */,
-				BB19E31E1BC5DE9B0089C8C7 /* Seq.swift */,
-				BB19E3211BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt */,
+				BBA5F81B1BC72D3700523EA9 /* Biology */,
 				BB19E2E61BC5BE5E0089C8C7 /* Main.storyboard */,
 				BB19E2E91BC5BE5E0089C8C7 /* Images.xcassets */,
 				BB19E2EB1BC5BE5E0089C8C7 /* LaunchScreen.xib */,
@@ -185,6 +177,46 @@
 				BB19E2F71BC5BE5E0089C8C7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BBA5F8181BC72CF600523EA9 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				BBA5F80A1BC6FEEA00523EA9 /* MapContainerContainerVC.swift */,
+				BBA5F80C1BC6FF5300523EA9 /* MapViewContainer.swift */,
+				BBA5F8161BC71BD400523EA9 /* MapFeatureListVC.swift */,
+				BBA5F8081BC5ECDE00523EA9 /* MapView.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		BBA5F8191BC72D0700523EA9 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				BB19E3171BC5D30A0089C8C7 /* FileContainerVC.swift */,
+				BB19E3191BC5D3210089C8C7 /* FileTableVCTableViewController.swift */,
+			);
+			name = File;
+			sourceTree = "<group>";
+		};
+		BBA5F81A1BC72D2D00523EA9 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				BBA5F80E1BC719D800523EA9 /* AnnotateVC.swift */,
+				BBA5F8101BC71A0C00523EA9 /* TranslateVC.swift */,
+				BBA5F8121BC71A1800523EA9 /* InspectVC.swift */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		BBA5F81B1BC72D3700523EA9 /* Biology */ = {
+			isa = PBXGroup;
+			children = (
+				BB19E3211BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt */,
+				BB19E31D1BC5DE9B0089C8C7 /* GenbankParser.swift */,
+				BB19E31E1BC5DE9B0089C8C7 /* Seq.swift */,
+			);
+			name = Biology;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -53,10 +53,14 @@ class MapFeatureListVC: UITableViewController
 
     // Configure the cell...
     let feature = sortedFeatures[indexPath.row]
+    let colorTouple = feature.color!
+    let color = UIColor(hue: colorTouple.hue, saturation: colorTouple.saturation, brightness: colorTouple.brightness, alpha: 1)
+    cell.backgroundColor = color
     let label = cell.viewWithTag(1) as! UILabel
     label.text = feature.key
     let textView = cell.viewWithTag(2) as! UITextView
     textView.text = "lorum ipsum..."
+    textView.backgroundColor = color
     
     return cell
   }

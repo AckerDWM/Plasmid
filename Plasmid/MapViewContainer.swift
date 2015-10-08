@@ -29,7 +29,7 @@ class MapViewContainer: UIViewController
   func highlightedFeatureOnMap(notification: NSNotification)
   {
     let userInfo = notification.userInfo as! [String : Int]
-    println(userInfo)
+    self.mapView.selectedFeatureIndex = userInfo["selectedIndex"]
   }
   
 }
