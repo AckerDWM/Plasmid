@@ -116,7 +116,6 @@ class GenbankParser {
             // Split into individual location segments
             let segmentsToJoin = locationString.componentsSeparatedByString(",")
             for segment in segmentsToJoin {
-              println(segment)
               var newSegmentTouple: (start: Int, end: Int?, delimiter: String?, onCodingSequence: Bool) = (start: Int(), end: nil, delimiter: nil, onCodingSequence: true)
               if (segment as NSString).containsString("..>") {
                 newSegmentTouple.delimiter = "..>"
@@ -141,9 +140,6 @@ class GenbankParser {
                   if location.toInt() != nil
                   {
                     if i == 0 {
-                      println(location)
-                      println(newSegmentTouple)
-                      println(location.toInt())
                       newSegmentTouple.start = location.toInt()!
                     } else {
                       newSegmentTouple.end = location.toInt()

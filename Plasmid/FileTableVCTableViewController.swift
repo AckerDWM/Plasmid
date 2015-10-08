@@ -26,15 +26,18 @@ class FileTableVCTableViewController: UITableViewController
     self.clearsSelectionOnViewWillAppear = false
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(animated: Bool)
+  {
     // load list of usable files
     self.loadDropboxFileList()
   }
 
   // MARK: - Table view delegate
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+  {
     let path = files[indexPath.row]
-    DropboxManager.openFile(path) {
+    DropboxManager.openFile(path)
+      {
       contents in
       Global.activeSeqObject = GenbankParser.parseGenbank(contents)
       NSNotificationCenter.defaultCenter().postNotificationName("newSeqObject", object: nil)

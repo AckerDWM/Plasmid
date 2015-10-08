@@ -13,6 +13,16 @@ class Global
   
   static var activeSeqObject = Seq()
   
+  static var seqAttributedString = NSAttributedString()
+  {
+    didSet(oldVal)
+    {
+      NSNotificationCenter.defaultCenter().postNotificationName("newAttributedString", object: nil)
+    }
+  }
+  
   static var activeDBPath: DBPath?
+  
+  static var selectedText = String()
   
 }

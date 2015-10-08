@@ -16,10 +16,13 @@ class FileContainerVC: UIViewController
   override func viewDidLoad()
   {
     super.viewDidLoad()
-
-    self.navigationController?.navigationBarHidden = false
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTextView", name: "newSeqObject", object: nil)
+  }
+  
+  override func viewWillAppear(animated: Bool)
+  {
+    self.navigationController?.navigationBarHidden = false
   }
   
   func updateTextView()
@@ -31,4 +34,5 @@ class FileContainerVC: UIViewController
   {
     DropboxManager.linkAccount(self)
   }
+  
 }
