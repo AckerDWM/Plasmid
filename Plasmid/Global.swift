@@ -15,10 +15,13 @@ class Global
   {
     willSet(newVal)
     {
+      // generate new attributed string
       var newAttibuted = NSMutableAttributedString(string: newVal.sequence)
       for i in 0...newVal.features.count - 1
       {
         var feature = newVal.features[i]
+        // assign a random feature color if one doesn't exist
+        println(feature.color)
         let colorTouple = feature.color ??
         {
           var randomFloats = [CGFloat(), CGFloat(), CGFloat()]
@@ -29,6 +32,9 @@ class Global
           }
           let colorTouple: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) = (hue: randomFloats[0], saturation: randomFloats[1], brightness: randomFloats[2])
           newVal.features[i].color = colorTouple
+          // add feature as a qualifier
+          let newQualifier: (definition: String, content: String?) = (definition: "\"PlasmidColor\"", content: "\"\(colorTouple.hue),\(colorTouple.hue),\(colorTouple.hue)\"")
+          newVal.features[i].qualifiers.append(newQualifier)
           return colorTouple
         }()
         for position in feature.positions

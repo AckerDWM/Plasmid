@@ -35,10 +35,15 @@ class FileTableVCTableViewController: UITableViewController
   // MARK: - Table view delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
   {
-    let path = files[indexPath.row]
+    if let oldPath = Global.activeDBPath
+    {
+      DropboxManager.saveFile(oldPath, contents: Global.activeSeqObject.stringRepresentation) {result in}
+    }
+    let path = self.files[indexPath.row]
     DropboxManager.openFile(path)
       {
       contents in
+      Global.activeDBPath = path
       Global.activeSeqObject = GenbankParser.parseGenbank(contents)
       NSNotificationCenter.defaultCenter().postNotificationName("newSeqObject", object: nil)
     }
