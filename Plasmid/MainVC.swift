@@ -59,6 +59,7 @@ class MainVC: UIViewController, UITextViewDelegate
   // MARK : Text view delegate
   func textViewDidChangeSelection(textView: UITextView)
   {
+    Global.selectedRange = textView.selectedRange
     Global.selectedText = (textView.text as NSString).substringWithRange(textView.selectedRange)
   }
 

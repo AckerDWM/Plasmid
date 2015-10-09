@@ -30,6 +30,9 @@
                                 <state key="normal" title="CDS">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="keyBtn:" destination="g7a-kL-Coz" eventType="touchUpInside" id="ZoE-89-GG7"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQg-f7-sr5">
                                 <rect key="frame" x="0.0" y="110" width="320" height="168"/>
@@ -44,10 +47,13 @@
                                 <state key="normal" title="+">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addBtn:" destination="g7a-kL-Coz" eventType="touchUpInside" id="RXq-od-emI"/>
+                                </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iti-B3-oYy">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iti-B3-oYy" customClass="HuePicker" customModule="Plasmid" customModuleProvider="target">
                                 <rect key="frame" x="16" y="286" width="288" height="78"/>
-                                <color key="backgroundColor" red="0.61081126249999995" green="1" blue="0.95016314069999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.18431372940540314" green="0.9490196704864502" blue="0.95686280727386475" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="78" id="fbp-At-7PJ"/>
                                 </constraints>
@@ -71,6 +77,11 @@
                             <constraint firstItem="x2d-DO-Mqt" firstAttribute="top" secondItem="6p0-lj-SK9" secondAttribute="bottom" id="wPw-Ms-LXJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="huePicker" destination="iti-B3-oYy" id="bXx-xM-yjX"/>
+                        <outlet property="textField" destination="C2O-Ax-gnG" id="wfS-7z-pyu"/>
+                        <outlet property="textView" destination="xQg-f7-sr5" id="zkF-8B-cCW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYI-aa-edW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

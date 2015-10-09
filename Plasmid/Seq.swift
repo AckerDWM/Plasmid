@@ -10,6 +10,7 @@ import Foundation
 
 class Seq {
   class Feature {
+    var label: String?
     var color: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat)?
     var key = String()
     var joinType: String?

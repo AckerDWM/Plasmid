@@ -21,14 +21,35 @@ class InspectVC: UIViewController
   {
     var text = String()
     let length = count(Global.selectedText)
-    text += "Length = \(length) bp"
+    text += "Length:\t\(length)bp"
     let Td = meltingTemperature(Global.selectedText)
-    text += "\n\nTd = \(Td) °C"
+    text += "\n\nTd:\t\(Td)°C"
     let GCContent = percentGC(Global.selectedText)
-    text += "\n\nGC content = \(GCContent) %"
+    text += "\n\nGC content:\t\(GCContent)%"
     
     // Find included features
-    // ...
+    text += "\n\nFeatures:"
+    for feature in Global.activeSeqObject.features
+    {
+      for position in feature.positions
+      {
+        if position.start > Global.selectedRange.location
+        {
+          if position.start < Global.selectedRange.location + Global.selectedRange.length
+          {
+            let end = position.end ?? position.start + 1
+            if end <= Global.selectedRange.location + Global.selectedRange.length
+            {
+              text += "\n\n\t \(feature.key)"
+              if let label = feature.label
+              {
+                text += "\n\t \(feature.label)"
+              }
+            }
+          }
+        }
+      }
+    }
     
     self.textView.text = text
   }

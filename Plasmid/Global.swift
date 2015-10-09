@@ -17,23 +17,18 @@ class Global
     {
       // generate new attributed string
       var newAttibuted = NSMutableAttributedString(string: newVal.sequence)
-      for i in 0...newVal.features.count - 1
+      for (var i = 0; i < newVal.features.count; i++)
       {
         var feature = newVal.features[i]
         // assign a random feature color if one doesn't exist
-        println(feature.color)
         let colorTouple = feature.color ??
         {
-          var randomFloats = [CGFloat(), CGFloat(), CGFloat()]
-          for ii in 0...2
-          {
-            let rand = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-            randomFloats[ii] = rand
-          }
-          let colorTouple: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) = (hue: randomFloats[0], saturation: randomFloats[1], brightness: randomFloats[2])
+          var randomFloat = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+          let colorTouple: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) = (hue: randomFloat, saturation: 1, brightness: 1)
+          println(colorTouple)
           newVal.features[i].color = colorTouple
           // add feature as a qualifier
-          let newQualifier: (definition: String, content: String?) = (definition: "\"PlasmidColor\"", content: "\"\(colorTouple.hue),\(colorTouple.hue),\(colorTouple.hue)\"")
+          let newQualifier: (definition: String, content: String?) = (definition: "\"PlasmidColor\"", content: "\"\(colorTouple.hue),\(colorTouple.saturation),\(colorTouple.brightness)\"")
           newVal.features[i].qualifiers.append(newQualifier)
           return colorTouple
         }()
@@ -61,5 +56,7 @@ class Global
   static var activeDBPath: DBPath?
   
   static var selectedText = String()
+  
+  static var selectedRange = NSRange()
   
 }
