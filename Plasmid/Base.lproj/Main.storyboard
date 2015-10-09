@@ -104,6 +104,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="HeX-iG-FH6" secondAttribute="trailing" constant="-16" id="fnk-6b-5Vu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="HeX-iG-FH6" id="zg4-1Z-mUF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cch-R9-wlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -137,6 +140,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="v2b-VW-ODm" secondAttribute="trailing" constant="-16" id="sGt-cL-Dxj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="v2b-VW-ODm" id="emm-a3-8bS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAd-5k-DhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

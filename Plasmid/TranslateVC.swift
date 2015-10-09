@@ -11,15 +11,12 @@ import UIKit
 class TranslateVC: UIViewController
 {
   
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    
-  }
+  @IBOutlet weak var textView: UITextView!
   
   override func viewWillAppear(animated: Bool)
   {
     self.navigationController?.navigationBarHidden = false
+    self.textView.text = translateDNA(Global.selectedText)
   }
   
 }

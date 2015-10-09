@@ -209,7 +209,7 @@ class GenbankParser {
     }
     // parse colors
     // not part of base BioSwift library
-    for i in 0...newSeq.features.count - 1
+    for (var i = 0; i < newSeq.features.count; i++)
     {
       let feature = newSeq.features[i]
       qualifierLoop: for qualifier in feature.qualifiers

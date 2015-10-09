@@ -35,6 +35,9 @@
 		BBA5F8131BC71A1800523EA9 /* InspectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F8121BC71A1800523EA9 /* InspectVC.swift */; };
 		BBA5F8151BC71A9700523EA9 /* FeatureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F8141BC71A9700523EA9 /* FeatureVC.swift */; };
 		BBA5F8171BC71BD400523EA9 /* MapFeatureListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F8161BC71BD400523EA9 /* MapFeatureListVC.swift */; };
+		BBF900B11BC82D1500696A30 /* translateDNA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF900B01BC82D1500696A30 /* translateDNA.swift */; };
+		BBF900B41BC831D100696A30 /* meltingTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF900B31BC831D100696A30 /* meltingTemperature.swift */; };
+		BBF900B61BC834F700696A30 /* percentGC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF900B51BC834F700696A30 /* percentGC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		BBA5F8121BC71A1800523EA9 /* InspectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectVC.swift; sourceTree = "<group>"; };
 		BBA5F8141BC71A9700523EA9 /* FeatureVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureVC.swift; sourceTree = "<group>"; };
 		BBA5F8161BC71BD400523EA9 /* MapFeatureListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFeatureListVC.swift; sourceTree = "<group>"; };
+		BBF900B01BC82D1500696A30 /* translateDNA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = translateDNA.swift; sourceTree = "<group>"; };
+		BBF900B31BC831D100696A30 /* meltingTemperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = meltingTemperature.swift; path = ../meltingTemperature.swift; sourceTree = "<group>"; };
+		BBF900B51BC834F700696A30 /* percentGC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = percentGC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,8 +221,19 @@
 				BB19E3211BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt */,
 				BB19E31D1BC5DE9B0089C8C7 /* GenbankParser.swift */,
 				BB19E31E1BC5DE9B0089C8C7 /* Seq.swift */,
+				BBF900B21BC82DBB00696A30 /* Functions */,
 			);
 			name = Biology;
+			sourceTree = "<group>";
+		};
+		BBF900B21BC82DBB00696A30 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				BBF900B01BC82D1500696A30 /* translateDNA.swift */,
+				BBF900B31BC831D100696A30 /* meltingTemperature.swift */,
+				BBF900B51BC834F700696A30 /* percentGC.swift */,
+			);
+			name = Functions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +341,7 @@
 				BB19E3181BC5D30A0089C8C7 /* FileContainerVC.swift in Sources */,
 				BB19E31C1BC5D6AA0089C8C7 /* Global.swift in Sources */,
 				BB19E2E11BC5BE5E0089C8C7 /* AppDelegate.swift in Sources */,
+				BBF900B61BC834F700696A30 /* percentGC.swift in Sources */,
 				BB19E31A1BC5D3210089C8C7 /* FileTableVCTableViewController.swift in Sources */,
 				BBA5F8111BC71A0C00523EA9 /* TranslateVC.swift in Sources */,
 				BB19E3031BC5C4B50089C8C7 /* MainVC.swift in Sources */,
@@ -331,6 +349,8 @@
 				BBA5F8131BC71A1800523EA9 /* InspectVC.swift in Sources */,
 				BBA5F80F1BC719D800523EA9 /* AnnotateVC.swift in Sources */,
 				BB19E3201BC5DE9B0089C8C7 /* Seq.swift in Sources */,
+				BBF900B41BC831D100696A30 /* meltingTemperature.swift in Sources */,
+				BBF900B11BC82D1500696A30 /* translateDNA.swift in Sources */,
 				BBA5F80D1BC6FF5300523EA9 /* MapViewContainer.swift in Sources */,
 				BB19E3051BC5C5A00089C8C7 /* DropboxManager.swift in Sources */,
 				BBA5F8091BC5ECDE00523EA9 /* MapView.swift in Sources */,

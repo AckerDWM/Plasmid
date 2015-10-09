@@ -9,15 +9,28 @@
 class InspectVC: UIViewController
 {
   
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    
-  }
+  @IBOutlet weak var textView: UITextView!
   
   override func viewWillAppear(animated: Bool)
   {
     self.navigationController?.navigationBarHidden = false
+    self.updateTextViewWithInspectableProperties()
+  }
+  
+  func updateTextViewWithInspectableProperties()
+  {
+    var text = String()
+    let length = count(Global.selectedText)
+    text += "Length = \(length) bp"
+    let Td = meltingTemperature(Global.selectedText)
+    text += "\n\nTd = \(Td) °C"
+    let GCContent = percentGC(Global.selectedText)
+    text += "\n\nGC content = \(GCContent) %"
+    
+    // Find included features
+    // ...
+    
+    self.textView.text = text
   }
   
 }
