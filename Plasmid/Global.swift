@@ -20,25 +20,36 @@ class Global
       for (var i = 0; i < newVal.features.count; i++)
       {
         var feature = newVal.features[i]
-        // assign a random feature color if one doesn't exist
-        let colorTouple = feature.color ??
-        {
-          var randomFloat = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-          let colorTouple: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) = (hue: randomFloat, saturation: 1, brightness: 1)
-          println(colorTouple)
-          newVal.features[i].color = colorTouple
-          // add feature as a qualifier
-          let newQualifier: (definition: String, content: String?) = (definition: "\"PlasmidColor\"", content: "\"\(colorTouple.hue),\(colorTouple.saturation),\(colorTouple.brightness)\"")
+        // assign color
+        let color = feature.color ?? {
+          // assign a random feature color if one doesn't exist
+          let newColor = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+          newVal.features[i].color = newColor
+          let newQualifier: (definition: String, content: String?) = (definition: "\"PlasmidColor\"", content: "\"\(newColor)\"")
           newVal.features[i].qualifiers.append(newQualifier)
-          return colorTouple
+          return newColor
         }()
+        // assign position
         for position in feature.positions
         {
           let start = position.start - 1
           let end = position.end ?? position.start
           let range = NSMakeRange(start, end - start)
-          let color = UIColor(hue: colorTouple.hue, saturation: colorTouple.saturation, brightness: colorTouple.brightness, alpha: 1)
+          let color = UIColor(hue: color, saturation: 1, brightness: 1, alpha: 1)
           newAttibuted.addAttribute(NSBackgroundColorAttributeName, value: color, range: range)
+        }
+        // assign label
+        let labelDefinitions = ["label", "gene", "allele", "note", "product", "function"]
+        qualLabelLoop: for qualifier in feature.qualifiers
+        {
+          for definition in labelDefinitions
+          {
+            if (qualifier.definition as NSString).containsString(definition)
+            {
+              newVal.features[i].label = qualifier.content!
+              break qualLabelLoop
+            }
+          }
         }
       }
       Global.seqAttributedString = newAttibuted

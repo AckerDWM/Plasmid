@@ -11,7 +11,7 @@ import Foundation
 class Seq {
   class Feature {
     var label: String?
-    var color: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat)?
+    var color: CGFloat?
     var key = String()
     var joinType: String?
     var positions: [(start: Int, end: Int?, delimiter: String?, onCodingSequence: Bool)] = []

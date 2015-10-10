@@ -16,12 +16,6 @@ class MapFeatureListVC: UITableViewController
       (s1: Seq.Feature, s2: Seq.Feature) in
       return s1.positions[0].start < s2.positions[0].start
   }
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    
-  }
 
   override func viewWillAppear(animated: Bool)
   {
@@ -36,30 +30,32 @@ class MapFeatureListVC: UITableViewController
 
   // MARK: - Table view data source
 
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+  {
     // #warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  {
     // #warning Incomplete method implementation.
     // Return the number of rows in the section.
     return sortedFeatures.count
   }
 
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+  {
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
 
     // Configure the cell...
     let feature = sortedFeatures[indexPath.row]
-    let colorTouple = feature.color!
-    let color = UIColor(hue: colorTouple.hue, saturation: colorTouple.saturation, brightness: colorTouple.brightness, alpha: 1)
+    let color = UIColor(hue: feature.color!, saturation: 1, brightness: 1, alpha: 1)
     cell.backgroundColor = color
     let label = cell.viewWithTag(1) as! UILabel
     label.text = feature.key
     let textView = cell.viewWithTag(2) as! UITextView
-    textView.text = "lorum ipsum..."
+    textView.text = feature.label
     textView.backgroundColor = color
     
     return cell

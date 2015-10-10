@@ -211,21 +211,13 @@ class GenbankParser {
     // not part of base BioSwift library
     for (var i = 0; i < newSeq.features.count; i++)
     {
-      let feature = newSeq.features[i]
-      qualifierLoop: for qualifier in feature.qualifiers
+      qualColorLoop: for qualifier in newSeq.features[i].qualifiers
       {
-        if (qualifier.definition as NSString).containsString("PlasmidColor")
+        if qualifier.definition == "\"PlasmidColor\""
         {
-          let colorString = qualifier.content ?? "\"0.3,0.2233222,0.5432\""
-          let trimmedColorString = (colorString as NSString).stringByReplacingOccurrencesOfString("\"", withString: String())
-          let contentArray = trimmedColorString.componentsSeparatedByString(",")
-          let cgfloatArray = [
-            CGFloat((contentArray[0] as NSString).floatValue),
-            CGFloat((contentArray[1] as NSString).floatValue),
-            CGFloat((contentArray[2] as NSString).floatValue)]
-          let colorTouple: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) = (hue: cgfloatArray[0], saturation: cgfloatArray[1], brightness: cgfloatArray[2])
-          newSeq.features[i].color = colorTouple
-          break qualifierLoop
+          let strippedString: NSString = (qualifier.content! as NSString).stringByReplacingOccurrencesOfString("\"", withString: String())
+          newSeq.features[i].color = CGFloat(strippedString.floatValue)
+          break qualColorLoop
         }
       }
     }

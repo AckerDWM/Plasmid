@@ -11,6 +11,7 @@ import UIKit
 class AnnotateVC: UIViewController
 {
 
+  @IBOutlet weak var keyBtnOut: UIButton!
   @IBOutlet weak var huePicker: HuePicker!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var textView: UITextView!
@@ -25,6 +26,8 @@ class AnnotateVC: UIViewController
   override func viewWillAppear(animated: Bool)
   {
     self.navigationController?.navigationBarHidden = false
+    self.textView.text = Global.selectedText
+    self.textField.text = String()
   }
 
   @IBAction func keyBtn(sender: AnyObject)
@@ -34,10 +37,60 @@ class AnnotateVC: UIViewController
   
   @IBAction func addBtn(sender: AnyObject)
   {
-    let colorTouple: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) = (hue: huePicker.h, saturation: 1, brightness: 1)
-    newFeature.color = colorTouple
-    newFeature.label = textField.text
-    // assign positions
+    if count(self.textView.text) > 0
+    {
+      // assign key
+      newFeature.key = self.keyBtnOut.currentTitle!
+      // assign color
+      newFeature.color = self.huePicker.h
+      // create qualifier for color
+      let colorQualifier: (definition: String, content: String?) = (definition: "\"PlasmidColor\"", content: "\"\(newFeature.color!)\"")
+      newFeature.qualifiers.append(colorQualifier)
+      // assign label
+      if count(self.textField.text) > 0
+      {
+        newFeature.label = self.textField.text
+        // create qualifier for label
+        let labelQualifier: (definition: String, content: String?) = (definition: "\"label\"", content: "\"\(newFeature.label!)\"")
+        newFeature.qualifiers.append(labelQualifier)
+      }
+      // assign positions
+      let sequence = self.textView.text
+      let sequenceRegex = NSRegularExpression(pattern: sequence, options: .CaseInsensitive, error: nil)!
+      let matches = sequenceRegex.matchesInString(Global.activeSeqObject.sequence, options: nil, range: NSMakeRange(0, count(Global.activeSeqObject.sequence)))
+      for match in matches
+      {
+        let range = match.range
+        let start = range.location + 1
+        var end: Int? = range.location + range.length
+        var delimiter: String? = ".."
+        if end! == start
+        {
+          end = nil
+          delimiter = nil
+        }
+        let position: (start: Int, end: Int?, delimiter: String?, onCodingSequence: Bool) = (start: start, end: end, delimiter: delimiter, onCodingSequence: true)
+        newFeature.positions.append(position)
+      }
+      if newFeature.positions.count > 0
+      {
+        var featureAlreadyExists = false
+        featureComparison: for feature in Global.activeSeqObject.features
+        {
+          if feature.key == newFeature.key && feature.label == newFeature.label
+          {
+            featureAlreadyExists = true
+            break featureComparison
+          }
+        }
+        if featureAlreadyExists == false
+        {
+          Global.activeSeqObject.features.append(newFeature)
+          Global.activeSeqObject = Global.activeSeqObject
+          self.navigationController!.popViewControllerAnimated(true)
+        }
+      }
+    }
   }
 
 }

@@ -75,8 +75,7 @@ class MapView: UIView
           newArc.selected = true
         }
         // add color
-        let colorTouple = feature.color!
-        newArc.color = UIColor(hue: colorTouple.hue, saturation: colorTouple.saturation, brightness: colorTouple.brightness, alpha: 1)
+        newArc.color = UIColor(hue: feature.color!, saturation: 1, brightness: 1, alpha: 1)
         let new = newArc
         arcs.append(new)
       }

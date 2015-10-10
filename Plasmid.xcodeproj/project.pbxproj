@@ -154,7 +154,6 @@
 				BB19E3041BC5C5A00089C8C7 /* DropboxManager.swift */,
 				BBA5F81B1BC72D3700523EA9 /* Biology */,
 				BB19E2E61BC5BE5E0089C8C7 /* Main.storyboard */,
-				BBEA85381BC84D8F005688AC /* HuePicker.swift */,
 				BB19E2E91BC5BE5E0089C8C7 /* Images.xcassets */,
 				BB19E2EB1BC5BE5E0089C8C7 /* LaunchScreen.xib */,
 				BB19E2DE1BC5BE5E0089C8C7 /* Supporting Files */,
@@ -188,6 +187,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BB9B835D1BC97BC0003A9EC9 /* Annotate */ = {
+			isa = PBXGroup;
+			children = (
+				BBA5F80E1BC719D800523EA9 /* AnnotateVC.swift */,
+				BBEA85381BC84D8F005688AC /* HuePicker.swift */,
+			);
+			name = Annotate;
+			sourceTree = "<group>";
+		};
 		BBA5F8181BC72CF600523EA9 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +219,7 @@
 		BBA5F81A1BC72D2D00523EA9 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				BBA5F80E1BC719D800523EA9 /* AnnotateVC.swift */,
+				BB9B835D1BC97BC0003A9EC9 /* Annotate */,
 				BBA5F8101BC71A0C00523EA9 /* TranslateVC.swift */,
 				BBA5F8121BC71A1800523EA9 /* InspectVC.swift */,
 			);
