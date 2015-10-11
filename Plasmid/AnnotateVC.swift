@@ -21,6 +21,8 @@ class AnnotateVC: UIViewController
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeKey:", name: "keySelected", object: nil)
   }
   
   override func viewWillAppear(animated: Bool)
@@ -29,10 +31,12 @@ class AnnotateVC: UIViewController
     self.textView.text = Global.selectedText
     self.textField.text = String()
   }
-
-  @IBAction func keyBtn(sender: AnyObject)
-  {
   
+  func changeKey(notification: NSNotification)
+  {
+    let userInfo = notification.userInfo as! [String : String]
+    let newKey = userInfo["key"]
+    self.keyBtnOut.setTitle(newKey, forState: .Normal)
   }
   
   @IBAction func addBtn(sender: AnyObject)

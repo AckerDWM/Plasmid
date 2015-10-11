@@ -51,19 +51,20 @@ class FeatureVC: UITableViewController, UITextFieldDelegate
         if count(label) > 0
         {
           features[i].label = label
+          var hasLabel = false
           for (var ii = 0; ii < features[i].qualifiers.count; ii++)
           {
-            var hasLabel = false
             if (features[i].qualifiers[ii].definition as NSString).containsString("label")
             {
               features[i].qualifiers[ii].content = label
               hasLabel = true
             }
-            if !hasLabel
-            {
-              let labelQualifier: (definition: String, content: String?) = (definition: "\"label\"", content: "\"\(label)\"")
-              features[i].qualifiers.append(labelQualifier)
-            }
+          }
+          if !hasLabel
+          {
+            println(label)
+            let labelQualifier: (definition: String, content: String?) = (definition: "\"label\"", content: "\"\(label)\"")
+            features[i].qualifiers.append(labelQualifier)
           }
         }
       }
@@ -103,8 +104,8 @@ class FeatureVC: UITableViewController, UITextFieldDelegate
       labelTextField.text = feature.label
     }
     let huePicker = cell.viewWithTag(3) as! HuePicker
-    huePicker.h = feature.color!
     huePicker.row = indexPath.row
+    huePicker.h = feature.color!
     
     return cell
   }
@@ -142,7 +143,11 @@ class FeatureVC: UITableViewController, UITextFieldDelegate
       let userInfo = notification.userInfo as! [String : NSNumber]
       let newHue = userInfo["hue"] as! CGFloat
       let row = userInfo["row"] as! Int
-      self.tableValues[row].color = newHue
+      if row < self.tableValues.count
+      {
+        self.tableValues[row].color = newHue
+        self.features[row].color = newHue
+      }
     }
   }
 
