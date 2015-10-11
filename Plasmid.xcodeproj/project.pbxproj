@@ -40,6 +40,7 @@
 		BBF900B11BC82D1500696A30 /* translateDNA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF900B01BC82D1500696A30 /* translateDNA.swift */; };
 		BBF900B41BC831D100696A30 /* meltingTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF900B31BC831D100696A30 /* meltingTemperature.swift */; };
 		BBF900B61BC834F700696A30 /* percentGC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF900B51BC834F700696A30 /* percentGC.swift */; };
+		BBFB7D211BCB18CF0027255D /* ScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB7D201BCB18CF0027255D /* ScanVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		BBF900B01BC82D1500696A30 /* translateDNA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = translateDNA.swift; sourceTree = "<group>"; };
 		BBF900B31BC831D100696A30 /* meltingTemperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = meltingTemperature.swift; path = ../meltingTemperature.swift; sourceTree = "<group>"; };
 		BBF900B51BC834F700696A30 /* percentGC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = percentGC.swift; sourceTree = "<group>"; };
+		BBFB7D201BCB18CF0027255D /* ScanVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				BB9B835D1BC97BC0003A9EC9 /* Annotate */,
 				BBA5F8101BC71A0C00523EA9 /* TranslateVC.swift */,
 				BBA5F8121BC71A1800523EA9 /* InspectVC.swift */,
+				BBFB7D201BCB18CF0027255D /* ScanVC.swift */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				BBA5F8091BC5ECDE00523EA9 /* MapView.swift in Sources */,
 				BB19E31F1BC5DE9B0089C8C7 /* GenbankParser.swift in Sources */,
 				BBA5F8151BC71A9700523EA9 /* FeatureVC.swift in Sources */,
+				BBFB7D211BCB18CF0027255D /* ScanVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
