@@ -273,7 +273,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Trc-BD-tcE" customClass="HuePicker" customModule="Plasmid" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="48.5" width="304" height="44"/>
+                                            <rect key="frame" x="8" y="48" width="304" height="44"/>
                                             <color key="backgroundColor" red="0.61081126249999995" green="1" blue="0.95016314069999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="uIA-PA-bVh"/>
@@ -285,9 +285,9 @@
                                         <constraint firstItem="pjx-d6-c57" firstAttribute="leading" secondItem="uh0-Hs-kN1" secondAttribute="trailing" constant="8" id="8YZ-lI-CcO"/>
                                         <constraint firstItem="pjx-d6-c57" firstAttribute="centerY" secondItem="uh0-Hs-kN1" secondAttribute="centerY" constant="0.75" id="Btf-IE-V5N"/>
                                         <constraint firstItem="uh0-Hs-kN1" firstAttribute="leading" secondItem="aRh-tr-WHS" secondAttribute="leadingMargin" id="CTG-lR-Bfs"/>
+                                        <constraint firstItem="pjx-d6-c57" firstAttribute="trailing" secondItem="aRh-tr-WHS" secondAttribute="trailingMargin" id="EO3-4E-xLV"/>
                                         <constraint firstItem="pjx-d6-c57" firstAttribute="height" secondItem="uh0-Hs-kN1" secondAttribute="height" id="NIl-24-nwa"/>
-                                        <constraint firstItem="pjx-d6-c57" firstAttribute="trailing" secondItem="aRh-tr-WHS" secondAttribute="trailingMargin" id="ZCT-tO-TOM"/>
-                                        <constraint firstItem="Trc-BD-tcE" firstAttribute="trailing" secondItem="aRh-tr-WHS" secondAttribute="trailingMargin" id="bbW-Hx-sSz"/>
+                                        <constraint firstItem="Trc-BD-tcE" firstAttribute="trailing" secondItem="aRh-tr-WHS" secondAttribute="trailingMargin" id="guN-qt-qE6"/>
                                         <constraint firstItem="Trc-BD-tcE" firstAttribute="bottom" secondItem="aRh-tr-WHS" secondAttribute="bottomMargin" id="iwB-Lu-hG5"/>
                                         <constraint firstItem="Trc-BD-tcE" firstAttribute="leading" secondItem="aRh-tr-WHS" secondAttribute="leadingMargin" id="mM9-bj-hES"/>
                                         <constraint firstItem="uh0-Hs-kN1" firstAttribute="top" secondItem="aRh-tr-WHS" secondAttribute="topMargin" id="umz-b1-0bi"/>

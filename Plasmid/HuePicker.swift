@@ -9,7 +9,16 @@ import UIKit
 
 public class HuePicker: UIView {
   
+  var row = 0
+  
   var _h:CGFloat = 0.1111
+  {
+    willSet(newVal)
+    {
+      NSNotificationCenter.defaultCenter().postNotificationName("hueChanged", object: nil, userInfo: ["hue" : newVal, "row" : self.row])
+    }
+  }
+  
   public var h:CGFloat { // [0,1]
     set(value) {
       _h = min(1, max(0, value))

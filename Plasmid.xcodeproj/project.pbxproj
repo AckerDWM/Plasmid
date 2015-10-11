@@ -148,6 +148,7 @@
 				BB19E2E01BC5BE5E0089C8C7 /* AppDelegate.swift */,
 				BB19E3021BC5C4B50089C8C7 /* MainVC.swift */,
 				BBA5F8141BC71A9700523EA9 /* FeatureVC.swift */,
+				BBEA85381BC84D8F005688AC /* HuePicker.swift */,
 				BBA5F81A1BC72D2D00523EA9 /* Tools */,
 				BBA5F8191BC72D0700523EA9 /* File */,
 				BBA5F8181BC72CF600523EA9 /* Map */,
@@ -191,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				BBA5F80E1BC719D800523EA9 /* AnnotateVC.swift */,
-				BBEA85381BC84D8F005688AC /* HuePicker.swift */,
 			);
 			name = Annotate;
 			sourceTree = "<group>";

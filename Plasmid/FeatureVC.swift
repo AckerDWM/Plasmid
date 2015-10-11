@@ -8,49 +8,62 @@
 
 import UIKit
 
-class FeatureVC: UITableViewController
+class FeatureVC: UITableViewController, UITextFieldDelegate
 {
   
   var features = Global.activeSeqObject.features
+  var tableValues: [(label: String?, color: CGFloat)] = []
+  
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "newHueSelected:", name: "hueChanged", object: nil)
+  }
   
   override func viewWillAppear(animated: Bool)
   {
     self.navigationController?.navigationBarHidden = false
-    features = Global.activeSeqObject.features
+    self.features = Global.activeSeqObject.features
+    for feature in features
+    {
+      let newValues: (label: String?, color: CGFloat) = (label: feature.label, color: feature.color!)
+      self.tableValues.append(newValues)
+    }
   }
   
-  // problem... cellForRowAtIndexPath only finds visible cells, so this crashes
   override func viewWillDisappear(animated: Bool)
   {
-    for (var i = 0; i < features.count; i++)
+    for (var i = 0; i < count(features); i++)
     {
-      let indexPath = NSIndexPath(forRow: i, inSection: 0)
-      let cell = self.tableView.cellForRowAtIndexPath(indexPath)
-      let huePicker = cell?.viewWithTag(3) as! HuePicker
-      features[i].color = huePicker.h
+      let color = tableValues[i].color
+      // assign colors
+      features[i].color = color
       for (var ii = 0; ii < features[i].qualifiers.count; ii++)
       {
         if features[i].qualifiers[ii].definition == "\"PlasmidColor\""
         {
-          features[i].qualifiers[ii].content = "\"\(features[i].color)\""
+          features[i].qualifiers[ii].content = "\"\(color)\""
         }
       }
-      let labelTextField = cell?.viewWithTag(2) as! UITextField
-      features[i].label = labelTextField.text!
-      if count(features[i].label!) > 0
+      // assign labels
+      if let label = tableValues[i].label
       {
-        for (var ii = 0; ii < features[i].qualifiers.count; ii++)
+        if count(label) > 0
         {
-          var hasLabel = false
-          if (features[i].qualifiers[ii].definition as NSString).containsString("label")
+          features[i].label = label
+          for (var ii = 0; ii < features[i].qualifiers.count; ii++)
           {
-            features[i].qualifiers[ii].content = features[i].label
-            hasLabel = true
-          }
-          if !hasLabel
-          {
-            let labelQualifier: (definition: String, content: String?) = (definition: "\"label\"", content: "\"\(features[i].label)\"")
-            features[i].qualifiers.append(labelQualifier)
+            var hasLabel = false
+            if (features[i].qualifiers[ii].definition as NSString).containsString("label")
+            {
+              features[i].qualifiers[ii].content = label
+              hasLabel = true
+            }
+            if !hasLabel
+            {
+              let labelQualifier: (definition: String, content: String?) = (definition: "\"label\"", content: "\"\(label)\"")
+              features[i].qualifiers.append(labelQualifier)
+            }
           }
         }
       }
@@ -75,7 +88,6 @@ class FeatureVC: UITableViewController
     return features.count
   }
 
-
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   {
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
@@ -85,12 +97,14 @@ class FeatureVC: UITableViewController
     let keyLabel = cell.viewWithTag(1) as! UILabel
     keyLabel.text = feature.key
     let labelTextField = cell.viewWithTag(2) as! UITextField
+    labelTextField.delegate = self
     if let label = feature.label
     {
       labelTextField.text = feature.label
     }
     let huePicker = cell.viewWithTag(3) as! HuePicker
     huePicker.h = feature.color!
+    huePicker.row = indexPath.row
     
     return cell
   }
@@ -101,7 +115,34 @@ class FeatureVC: UITableViewController
     if editingStyle == .Delete
     {
       // Delete the row from the data source
+      tableView.beginUpdates()
+      features.removeAtIndex(indexPath.row)
+      tableValues.removeAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+      tableView.endUpdates()
+    }
+  }
+  
+  // MARK : Text field delegate
+  func textFieldDidEndEditing(textField: UITextField)
+  {
+    if count(textField.text) > 0
+    {
+      let center = textField.center
+      let inTable = tableView.convertPoint(center, fromView: textField.superview)
+      let indexPath = tableView.indexPathForRowAtPoint(inTable)!
+      self.tableValues[indexPath.row].label = textField.text
+    }
+  }
+  
+  func newHueSelected(notification: NSNotification)
+  {
+    if self.tableValues.count > 0
+    {
+      let userInfo = notification.userInfo as! [String : NSNumber]
+      let newHue = userInfo["hue"] as! CGFloat
+      let row = userInfo["row"] as! Int
+      self.tableValues[row].color = newHue
     }
   }
 
