@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0A87611BCC3FAE0090035C /* Default_Promoters.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB0A875B1BCC3FAE0090035C /* Default_Promoters.csv */; };
+		BB0A87621BCC3FAE0090035C /* Default_Terminators.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB0A875C1BCC3FAE0090035C /* Default_Terminators.csv */; };
+		BB0A87631BCC3FAE0090035C /* Default_Features.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB0A875D1BCC3FAE0090035C /* Default_Features.csv */; };
+		BB0A87641BCC3FAE0090035C /* Default_Genes.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB0A875E1BCC3FAE0090035C /* Default_Genes.csv */; };
+		BB0A87651BCC3FAE0090035C /* Default_Origins.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB0A875F1BCC3FAE0090035C /* Default_Origins.csv */; };
+		BB0A87661BCC3FAE0090035C /* Default_Regulatory_Elements.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB0A87601BCC3FAE0090035C /* Default_Regulatory_Elements.csv */; };
+		BB0A876A1BCC47F90090035C /* csvRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A87691BCC47F90090035C /* csvRead.swift */; };
 		BB19E2E11BC5BE5E0089C8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E2E01BC5BE5E0089C8C7 /* AppDelegate.swift */; };
 		BB19E2E81BC5BE5E0089C8C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB19E2E61BC5BE5E0089C8C7 /* Main.storyboard */; };
 		BB19E2EA1BC5BE5E0089C8C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB19E2E91BC5BE5E0089C8C7 /* Images.xcassets */; };
@@ -54,6 +61,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB0A875B1BCC3FAE0090035C /* Default_Promoters.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Default_Promoters.csv; sourceTree = "<group>"; };
+		BB0A875C1BCC3FAE0090035C /* Default_Terminators.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Default_Terminators.csv; sourceTree = "<group>"; };
+		BB0A875D1BCC3FAE0090035C /* Default_Features.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Default_Features.csv; sourceTree = "<group>"; };
+		BB0A875E1BCC3FAE0090035C /* Default_Genes.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Default_Genes.csv; sourceTree = "<group>"; };
+		BB0A875F1BCC3FAE0090035C /* Default_Origins.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Default_Origins.csv; sourceTree = "<group>"; };
+		BB0A87601BCC3FAE0090035C /* Default_Regulatory_Elements.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Default_Regulatory_Elements.csv; sourceTree = "<group>"; };
+		BB0A87691BCC47F90090035C /* csvRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = csvRead.swift; sourceTree = "<group>"; };
 		BB19E2DB1BC5BE5E0089C8C7 /* Plasmid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plasmid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB19E2DF1BC5BE5E0089C8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB19E2E01BC5BE5E0089C8C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +134,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB0A87671BCC3FBA0090035C /* Default Feature Databases */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A875B1BCC3FAE0090035C /* Default_Promoters.csv */,
+				BB0A875C1BCC3FAE0090035C /* Default_Terminators.csv */,
+				BB0A875D1BCC3FAE0090035C /* Default_Features.csv */,
+				BB0A875E1BCC3FAE0090035C /* Default_Genes.csv */,
+				BB0A875F1BCC3FAE0090035C /* Default_Origins.csv */,
+				BB0A87601BCC3FAE0090035C /* Default_Regulatory_Elements.csv */,
+			);
+			name = "Default Feature Databases";
+			sourceTree = "<group>";
+		};
+		BB0A87681BCC3FDA0090035C /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				BBFB7D201BCB18CF0027255D /* ScanVC.swift */,
+				BB0A87691BCC47F90090035C /* csvRead.swift */,
+				BB0A87671BCC3FBA0090035C /* Default Feature Databases */,
+			);
+			name = Scan;
+			sourceTree = "<group>";
+		};
 		BB19E2D21BC5BE5E0089C8C7 = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +264,7 @@
 				BB9B835D1BC97BC0003A9EC9 /* Annotate */,
 				BBA5F8101BC71A0C00523EA9 /* TranslateVC.swift */,
 				BBA5F8121BC71A1800523EA9 /* InspectVC.swift */,
-				BBFB7D201BCB18CF0027255D /* ScanVC.swift */,
+				BB0A87681BCC3FDA0090035C /* Scan */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -333,9 +370,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0A87621BCC3FAE0090035C /* Default_Terminators.csv in Resources */,
+				BB0A87641BCC3FAE0090035C /* Default_Genes.csv in Resources */,
 				BB19E2E81BC5BE5E0089C8C7 /* Main.storyboard in Resources */,
 				BB19E3221BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt in Resources */,
+				BB0A87611BCC3FAE0090035C /* Default_Promoters.csv in Resources */,
+				BB0A87631BCC3FAE0090035C /* Default_Features.csv in Resources */,
 				BB19E2ED1BC5BE5E0089C8C7 /* LaunchScreen.xib in Resources */,
+				BB0A87661BCC3FAE0090035C /* Default_Regulatory_Elements.csv in Resources */,
+				BB0A87651BCC3FAE0090035C /* Default_Origins.csv in Resources */,
 				BB19E2EA1BC5BE5E0089C8C7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +410,7 @@
 				BBA5F8131BC71A1800523EA9 /* InspectVC.swift in Sources */,
 				BBA5F80F1BC719D800523EA9 /* AnnotateVC.swift in Sources */,
 				BB19E3201BC5DE9B0089C8C7 /* Seq.swift in Sources */,
+				BB0A876A1BCC47F90090035C /* csvRead.swift in Sources */,
 				BBF900B41BC831D100696A30 /* meltingTemperature.swift in Sources */,
 				BBF900B11BC82D1500696A30 /* translateDNA.swift in Sources */,
 				BBEA85391BC84D8F005688AC /* HuePicker.swift in Sources */,
