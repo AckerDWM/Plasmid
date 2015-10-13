@@ -23,6 +23,9 @@ class AnnotateVC: UIViewController
     super.viewDidLoad()
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeKey:", name: "keySelected", object: nil)
+    
+    //self.textView.addDNAAccessory()
+    self.textView.inputView = DnaInput(frame: CGRect(), inputViewStyle: .Keyboard)
   }
   
   override func viewWillAppear(animated: Bool)
@@ -41,57 +44,60 @@ class AnnotateVC: UIViewController
   
   @IBAction func addBtn(sender: AnyObject)
   {
-    if count(self.textView.text) > 0
+    if self.keyBtnOut.currentTitle! != "Key"
     {
-      // assign key
-      newFeature.key = self.keyBtnOut.currentTitle!
-      // assign color
-      newFeature.color = self.huePicker.h
-      // create qualifier for color
-      let colorQualifier: (definition: String, content: String?) = (definition: "\"PlasmidColor\"", content: "\"\(newFeature.color!)\"")
-      newFeature.qualifiers.append(colorQualifier)
-      // assign label
-      if count(self.textField.text) > 0
+      if count(self.textView.text) > 0
       {
-        newFeature.label = self.textField.text
-        // create qualifier for label
-        let labelQualifier: (definition: String, content: String?) = (definition: "\"label\"", content: "\"\(newFeature.label!)\"")
-        newFeature.qualifiers.append(labelQualifier)
-      }
-      // assign positions
-      let sequence = self.textView.text
-      let sequenceRegex = NSRegularExpression(pattern: sequence, options: .CaseInsensitive, error: nil)!
-      let matches = sequenceRegex.matchesInString(Global.activeSeqObject.sequence, options: nil, range: NSMakeRange(0, count(Global.activeSeqObject.sequence)))
-      for match in matches
-      {
-        let range = match.range
-        let start = range.location + 1
-        var end: Int? = range.location + range.length
-        var delimiter: String? = ".."
-        if end! == start
+        // assign key
+        newFeature.key = self.keyBtnOut.currentTitle!
+        // assign color
+        newFeature.color = self.huePicker.h
+        // create qualifier for color
+        let colorQualifier: (definition: String, content: String?) = (definition: "\"PlasmidColor\"", content: "\"\(newFeature.color!)\"")
+        newFeature.qualifiers.append(colorQualifier)
+        // assign label
+        if count(self.textField.text) > 0
         {
-          end = nil
-          delimiter = nil
+          newFeature.label = self.textField.text
+          // create qualifier for label
+          let labelQualifier: (definition: String, content: String?) = (definition: "\"label\"", content: "\"\(newFeature.label!)\"")
+          newFeature.qualifiers.append(labelQualifier)
         }
-        let position: (start: Int, end: Int?, delimiter: String?, onCodingSequence: Bool) = (start: start, end: end, delimiter: delimiter, onCodingSequence: true)
-        newFeature.positions.append(position)
-      }
-      if newFeature.positions.count > 0
-      {
-        var featureAlreadyExists = false
-        featureComparison: for feature in Global.activeSeqObject.features
+        // assign positions
+        let sequence = self.textView.text
+        let sequenceRegex = NSRegularExpression(pattern: sequence, options: .CaseInsensitive, error: nil)!
+        let matches = sequenceRegex.matchesInString(Global.activeSeqObject.sequence, options: nil, range: NSMakeRange(0, count(Global.activeSeqObject.sequence)))
+        for match in matches
         {
-          if feature.key == newFeature.key && feature.label == newFeature.label
+          let range = match.range
+          let start = range.location + 1
+          var end: Int? = range.location + range.length
+          var delimiter: String? = ".."
+          if end! == start
           {
-            featureAlreadyExists = true
-            break featureComparison
+            end = nil
+            delimiter = nil
           }
+          let position: (start: Int, end: Int?, delimiter: String?, onCodingSequence: Bool) = (start: start, end: end, delimiter: delimiter, onCodingSequence: true)
+          newFeature.positions.append(position)
         }
-        if featureAlreadyExists == false
+        if newFeature.positions.count > 0
         {
-          Global.activeSeqObject.features.append(newFeature)
-          Global.activeSeqObject = Global.activeSeqObject
-          self.navigationController!.popViewControllerAnimated(true)
+          var featureAlreadyExists = false
+          featureComparison: for feature in Global.activeSeqObject.features
+          {
+            if feature.key == newFeature.key && feature.label == newFeature.label
+            {
+              featureAlreadyExists = true
+              break featureComparison
+            }
+          }
+          if featureAlreadyExists == false
+          {
+            Global.activeSeqObject.features.append(newFeature)
+            Global.activeSeqObject = Global.activeSeqObject
+            self.navigationController!.popViewControllerAnimated(true)
+          }
         }
       }
     }

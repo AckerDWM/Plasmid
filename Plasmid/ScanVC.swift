@@ -31,11 +31,16 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     "Default_Origins",
     "Default_Regulatory_Elements"]
   
+  var userSelections: [Bool] = []
+  
+  var defaultSelections = [false, false, false, false, false, false]
+  
   override func viewDidLoad()
   {
     super.viewDidLoad()
     
     self.navigationController?.navigationBarHidden = false
+    self.tableViewOut.allowsMultipleSelection = true
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -57,6 +62,7 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
       }
       self.userDatabases = databases
+      self.userSelections = [Bool](count: databases.count, repeatedValue: false)
     }
   }
   
@@ -69,8 +75,28 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
   {
-    // set as selected
-    // ...
+    // set databases as selected
+    if indexPath.section == 0
+    {
+      self.defaultSelections[indexPath.row] = true
+    }
+    else
+    {
+      self.userSelections[indexPath.row] = true
+    }
+  }
+  
+  func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
+  {
+    // set databases as unselected
+    if indexPath.section == 0
+    {
+      self.defaultSelections[indexPath.row] = false
+    }
+    else
+    {
+      self.userSelections[indexPath.row] = false
+    }
   }
   
   // MARK : Table view data source
@@ -86,7 +112,7 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
   {
     // #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if section == 1
+    if section == 0
     {
       return defaultDatabases.count
     }
@@ -101,7 +127,7 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
     
     // Configure the cell...
-    if indexPath.section == 1
+    if indexPath.section == 0
     {
       cell.textLabel?.text = defaultDatabases[indexPath.row].stringByDeletingPathExtension
     }
@@ -115,68 +141,75 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
   
   // read databases into lists of features
   // !!! Untested for user databases!!!
-  func loadSelections(defaultSelections: [Int], userSelections: [Int])
+  func loadSelections(defaultSelections: [Bool], userSelections: [Bool])
   {
     // annotate from selected default feature databases
     var newFeatures: [feature] = []
-    for index in defaultSelections
+    for (var i = 0; i < defaultSelections.count; i++)
     {
-      // read into csv
-      let resource = defaultDatabases[index]
-      let path = NSBundle.mainBundle().pathForResource(resource, ofType: "csv")!
-      let csv = csvRead(path)
-      // identify features
-      for row in csv
+      if defaultSelections[i] == true
       {
-        let newFeature: feature = (label: row[0], key: row[1], sequence: row[2])
-        newFeatures.append(newFeature)
-      }
-    }
-    // annotate default features
-    self.annotate(newFeatures)
-    // annotate from selected user feature databases
-    for index in userSelections
-    {
-      let dbPath = userDatabases[index]
-      DropboxManager.openFile(dbPath)
-      { // perform user database annotation off of the main thread
-        fileString in
-        var newFeatures: [feature] = []
         // read into csv
-        var csv: [[String]] = []
-        if count(fileString) > 0
-        {
-          let lines = fileString.componentsSeparatedByCharactersInSet(.newlineCharacterSet())
-          var splitLines = [[String]](count: lines.count, repeatedValue: [])
-          for (var i = 0; i < lines.count; i++)
-          {
-            let split = lines[i].componentsSeparatedByString(",")
-            splitLines[i] = split
-          }
-          csv = splitLines
-        }
+        let resource = self.defaultDatabases[i]
+        let path = NSBundle.mainBundle().pathForResource(resource, ofType: "csv")!
+        let csv = csvRead(path)
         // identify features
         for row in csv
         {
           let newFeature: feature = (label: row[0], key: row[1], sequence: row[2])
           newFeatures.append(newFeature)
         }
-        // annotate user features
-        self.annotate(newFeatures)
+      }
+    }
+    // annotate default features
+    annotateFeatures(newFeatures)
+    // annotate from selected user feature databases
+    for (var i = 0; i < userSelections.count; i++)
+    {
+      if userSelections[i] == true
+      {
+        let dbPath = self.userDatabases[i]
+        DropboxManager.openFile(dbPath)
+        { // perform user database annotation off of the main thread
+          fileString in
+          var newFeatures: [feature] = []
+          // read into csv
+          var csv: [[String]] = []
+          if count(fileString) > 0
+          {
+            let lines = fileString.componentsSeparatedByCharactersInSet(.newlineCharacterSet())
+            var splitLines = [[String]](count: lines.count, repeatedValue: [])
+            for (var i = 0; i < lines.count; i++)
+            {
+              let split = lines[i].componentsSeparatedByString(",")
+              splitLines[i] = split
+            }
+            csv = splitLines
+          }
+          // identify features
+          for row in csv
+          {
+            let newFeature: feature = (label: row[0], key: row[1], sequence: row[2])
+            newFeatures.append(newFeature)
+          }
+          // annotate user features
+          annotateFeatures(newFeatures)
+        }
       }
     }
   }
   
-  // !!! Untested !!!
-  func annotate(features: [feature])
-  {
-    println(features)
-    // ...
-  }
-  
   @IBAction func scanSelectedBtn(sender: AnyObject)
   {
-    // example
-    loadSelections([0, 1, 2, 3, 4, 5], userSelections: [])
+    // scan using selected databases
+    self.loadSelections(self.defaultSelections, userSelections: self.userSelections)
+  }
+  
+  @IBAction func scanAllBtn(sender: AnyObject)
+  {
+    // scan using all loaded databases
+    let defaultSelections = [Bool](count: self.defaultSelections.count, repeatedValue: true)
+    let userSelections = [Bool](count: self.userSelections.count, repeatedValue: true)
+    self.loadSelections(defaultSelections, userSelections: userSelections)
   }
 }
