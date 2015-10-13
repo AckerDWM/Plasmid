@@ -34,6 +34,7 @@
 		BB19E31F1BC5DE9B0089C8C7 /* GenbankParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E31D1BC5DE9B0089C8C7 /* GenbankParser.swift */; };
 		BB19E3201BC5DE9B0089C8C7 /* Seq.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19E31E1BC5DE9B0089C8C7 /* Seq.swift */; };
 		BB19E3221BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt in Resources */ = {isa = PBXBuildFile; fileRef = BB19E3211BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt */; };
+		BB1EA2BB1BCC8C2300D8A838 /* annotateFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1EA2BA1BCC8C2300D8A838 /* annotateFeatures.swift */; };
 		BBA5F8091BC5ECDE00523EA9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F8081BC5ECDE00523EA9 /* MapView.swift */; };
 		BBA5F80B1BC6FEEA00523EA9 /* MapContainerContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F80A1BC6FEEA00523EA9 /* MapContainerContainerVC.swift */; };
 		BBA5F80D1BC6FF5300523EA9 /* MapViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F80C1BC6FF5300523EA9 /* MapViewContainer.swift */; };
@@ -93,6 +94,7 @@
 		BB19E31D1BC5DE9B0089C8C7 /* GenbankParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenbankParser.swift; sourceTree = "<group>"; };
 		BB19E31E1BC5DE9B0089C8C7 /* Seq.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seq.swift; sourceTree = "<group>"; };
 		BB19E3211BC5E1180089C8C7 /* genbankAppendixII_featureKeys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = genbankAppendixII_featureKeys.txt; sourceTree = "<group>"; };
+		BB1EA2BA1BCC8C2300D8A838 /* annotateFeatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = annotateFeatures.swift; sourceTree = "<group>"; };
 		BBA5F8081BC5ECDE00523EA9 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		BBA5F80A1BC6FEEA00523EA9 /* MapContainerContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapContainerContainerVC.swift; sourceTree = "<group>"; };
 		BBA5F80C1BC6FF5300523EA9 /* MapViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewContainer.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				BBFB7D201BCB18CF0027255D /* ScanVC.swift */,
+				BB1EA2BA1BCC8C2300D8A838 /* annotateFeatures.swift */,
 				BB0A87691BCC47F90090035C /* csvRead.swift */,
 				BB0A87671BCC3FBA0090035C /* Default Feature Databases */,
 			);
@@ -399,6 +402,7 @@
 			files = (
 				BBA5F8171BC71BD400523EA9 /* MapFeatureListVC.swift in Sources */,
 				BB19E3181BC5D30A0089C8C7 /* FileContainerVC.swift in Sources */,
+				BB1EA2BB1BCC8C2300D8A838 /* annotateFeatures.swift in Sources */,
 				BB19E31C1BC5D6AA0089C8C7 /* Global.swift in Sources */,
 				BBD1635D1BCAD31200ACD31B /* KeySelectionVCTableViewController.swift in Sources */,
 				BB19E2E11BC5BE5E0089C8C7 /* AppDelegate.swift in Sources */,

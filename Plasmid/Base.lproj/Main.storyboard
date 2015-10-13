@@ -274,7 +274,11 @@
                                 <items>
                                     <barButtonItem title="Scan All" id="Icv-eT-FXn"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xeJ-eN-HtO"/>
-                                    <barButtonItem title="Scan Selected" id="nkN-fE-ivr"/>
+                                    <barButtonItem title="Scan Selected" id="nkN-fE-ivr">
+                                        <connections>
+                                            <action selector="scanSelectedBtn:" destination="id2-kv-FZe" id="uDG-9g-cJv"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oMA-7N-Otk">
@@ -306,6 +310,9 @@
                             <constraint firstItem="RNJ-2e-AUO" firstAttribute="top" secondItem="7k1-DF-ym0" secondAttribute="bottom" id="op7-5X-aWX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableViewOut" destination="oMA-7N-Otk" id="zaI-9B-6Bz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnW-cr-YfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -323,7 +330,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3f-mI-5Eb">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3f-mI-5Eb">
                                 <rect key="frame" x="0.0" y="108" width="320" height="328"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>

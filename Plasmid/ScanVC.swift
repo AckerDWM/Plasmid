@@ -11,9 +11,17 @@ import UIKit
 class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
   
+  @IBOutlet weak var tableViewOut: UITableView!
+  
   typealias feature = (label: String, key: String, sequence: String)
   
   var userDatabases: [DBPath] = []
+  {
+    didSet(oldVal)
+    {
+      self.tableViewOut.reloadData()
+    }
+  }
   
   let defaultDatabases = [
     "Default_Features",
@@ -28,6 +36,28 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     super.viewDidLoad()
     
     self.navigationController?.navigationBarHidden = false
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    self.loadUserDatabases()
+  }
+  
+  func loadUserDatabases()
+  {
+    DropboxManager.listFiles()
+    {
+      results in
+      var databases: [DBPath] = []
+      for file in results
+      {
+        let path = file.path
+        if path.stringValue().pathExtension == "csv"
+        {
+          databases.append(path)
+        }
+      }
+      self.userDatabases = databases
+    }
   }
   
   // MARK : Table view delegate
@@ -84,7 +114,7 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
   }
   
   // read databases into lists of features
-  // !!! Untested !!!
+  // !!! Untested for user databases!!!
   func loadSelections(defaultSelections: [Int], userSelections: [Int])
   {
     // annotate from selected default feature databases
@@ -116,7 +146,7 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         var csv: [[String]] = []
         if count(fileString) > 0
         {
-          let lines = fileString.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+          let lines = fileString.componentsSeparatedByCharactersInSet(.newlineCharacterSet())
           var splitLines = [[String]](count: lines.count, repeatedValue: [])
           for (var i = 0; i < lines.count; i++)
           {
@@ -140,7 +170,13 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
   // !!! Untested !!!
   func annotate(features: [feature])
   {
+    println(features)
     // ...
   }
   
+  @IBAction func scanSelectedBtn(sender: AnyObject)
+  {
+    // example
+    loadSelections([0, 1, 2, 3, 4, 5], userSelections: [])
+  }
 }

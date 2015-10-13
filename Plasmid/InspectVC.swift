@@ -43,7 +43,7 @@ class InspectVC: UIViewController
               text += "\n\n\t \(feature.key)"
               if let label = feature.label
               {
-                text += "\n\t \(feature.label)"
+                text += "\n\t\t \(label)"
               }
             }
           }
