@@ -21,6 +21,7 @@ class MainVC: UIViewController, UITextViewDelegate, UISearchBarDelegate
   {
     super.viewDidLoad()
     
+    self.searchBar.useDNAKeyboard()
     self.dismissBtnOut.hidden = true
     self.textView.delegate = self
     let annotateAction = UIAlertAction(title: "Annotate", style: UIAlertActionStyle.Default)
@@ -53,6 +54,7 @@ class MainVC: UIViewController, UITextViewDelegate, UISearchBarDelegate
     self.toolsActionView.addAction(scanAction)
     self.toolsActionView.addAction(cancelAction)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTextView", name: "newAttributedString", object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "search", name: "searchButtonClicked", object: nil)
   }
   
   override func viewWillAppear(animated: Bool)
@@ -65,12 +67,12 @@ class MainVC: UIViewController, UITextViewDelegate, UISearchBarDelegate
     self.textView.attributedText = Global.seqAttributedString
   }
   
-  // MARK : Search bar delegate
-  // Untested ...
-  func searchBarSearchButtonClicked(searchBar: UISearchBar)
+  
+  // search bar delegate search clicked replacement for custom keyboard
+  func search()
   {
     let mutable = NSMutableAttributedString(attributedString: Global.seqAttributedString)
-    let searchRegex = NSRegularExpression(pattern: searchBar.text, options: .CaseInsensitive, error: nil)
+    let searchRegex = NSRegularExpression(pattern: self.searchBar.text, options: .CaseInsensitive, error: nil)
     let sequenceString = Global.activeSeqObject.sequence
     let matches = searchRegex?.matchesInString(sequenceString, options: nil, range: NSMakeRange(0, count(sequenceString)))
     if matches?.count > 0

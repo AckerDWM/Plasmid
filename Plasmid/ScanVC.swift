@@ -166,11 +166,11 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // annotate from selected user feature databases
     for (var i = 0; i < userSelections.count; i++)
     {
-      if userSelections[i] == true
+      if userSelections[i]
       {
         let dbPath = self.userDatabases[i]
         DropboxManager.openFile(dbPath)
-        { // perform user database annotation off of the main thread
+        { // perform user database annotation on completion
           fileString in
           var newFeatures: [feature] = []
           // read into csv

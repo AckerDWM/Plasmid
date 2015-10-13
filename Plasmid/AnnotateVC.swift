@@ -24,8 +24,7 @@ class AnnotateVC: UIViewController
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeKey:", name: "keySelected", object: nil)
     
-    //self.textView.addDNAAccessory()
-    self.textView.inputView = DnaInput(frame: CGRect(), inputViewStyle: .Keyboard)
+    self.textView.useDNAKeyboard()
   }
   
   override func viewWillAppear(animated: Bool)
