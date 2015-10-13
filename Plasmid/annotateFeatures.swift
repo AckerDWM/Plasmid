@@ -49,7 +49,7 @@ func annotateFeatures(features: [(label: String, key: String, sequence: String)]
         println(newFeature.key)
         println(feature.label)
         println(newFeature.label)
-        if feature.key == newFeature.key && feature.label == newFeature.label
+        if feature.key == newFeature.key && feature.label == "\"\(newFeature.label!)\""
         {
           featureAlreadyExists = true
           println("feature exists")
