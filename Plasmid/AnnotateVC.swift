@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnnotateVC: UIViewController
+class AnnotateVC: UIViewController, UITextFieldDelegate
 {
 
   @IBOutlet weak var keyBtnOut: UIButton!
@@ -25,6 +25,14 @@ class AnnotateVC: UIViewController
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeKey:", name: "keySelected", object: nil)
     
     self.textView.useDNAKeyboard()
+    self.textView.layer.borderWidth = 1
+    self.textField.delegate = self
+  }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool
+  {
+    textField.resignFirstResponder()
+    return true
   }
   
   override func viewWillAppear(animated: Bool)
@@ -79,6 +87,10 @@ class AnnotateVC: UIViewController
           }
           let position: (start: Int, end: Int?, delimiter: String?, onCodingSequence: Bool) = (start: start, end: end, delimiter: delimiter, onCodingSequence: true)
           newFeature.positions.append(position)
+        }
+        if matches.count > 1
+        {
+          newFeature.joinType = "order"
         }
         if newFeature.positions.count > 0
         {

@@ -133,7 +133,7 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     else
     {
-      cell.textLabel?.text = userDatabases[indexPath.row].stringValue().stringByDeletingPathExtension
+      cell.textLabel?.text = userDatabases[indexPath.row].stringValue().stringByDeletingPathExtension.lastPathComponent
     }
     
     return cell

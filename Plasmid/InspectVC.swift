@@ -24,8 +24,15 @@ class InspectVC: UIViewController
     text += "Length:\t\(length)bp"
     let Td = meltingTemperature(Global.selectedText)
     text += "\n\nTd:\t\(Td)°C"
+    if length <= 14 || length >= 20
+    {
+      text += "\n\tMelting temperature calculations based" +
+               "\n\ton the Wallace Rule may be inaccurate" +
+               "\n\tfor sequence of >20 or <14 base pairs"
+    }
     let GCContent = percentGC(Global.selectedText)
-    text += "\n\nGC content:\t\(GCContent)%"
+    let rounded = Double(round(1000*GCContent)/1000)
+    text += "\n\nGC content:\t\(rounded)%"
     
     // Find included features
     text += "\n\nFeatures:"

@@ -56,7 +56,7 @@ class MapFeatureListVC: UITableViewController
     label.text = feature.key
     let textView = cell.viewWithTag(2) as! UITextView
     textView.text = feature.label
-    textView.backgroundColor = color
+    textView.backgroundColor = UIColor.clearColor()
     
     return cell
   }
