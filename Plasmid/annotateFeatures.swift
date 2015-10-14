@@ -39,6 +39,10 @@ func annotateFeatures(features: [(label: String, key: String, sequence: String)]
       let position: (start: Int, end: Int?, delimiter: String?, onCodingSequence: Bool) = (start: start, end: end, delimiter: delimiter, onCodingSequence: true)
       newFeature.positions.append(position)
     }
+    if matches.count > 1
+    {
+      newFeature.joinType = "order"
+    }
     if newFeature.positions.count > 0
     {
       // broken ...
