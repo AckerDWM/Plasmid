@@ -45,7 +45,6 @@ func annotateFeatures(features: [(label: String, key: String, sequence: String)]
     }
     if newFeature.positions.count > 0
     {
-      // broken ...
       var featureAlreadyExists = false
       featureComparison: for feature in Global.activeSeqObject.features
       {

@@ -8,16 +8,22 @@
 
 import UIKit
 
-class FeatureVC: UITableViewController, UITextFieldDelegate
+class FeatureVC: UIViewController, UITableViewDataSource, UITableViewDelegate,  UITextFieldDelegate
 {
+ 
+  
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var tableViewDistFromBottom: NSLayoutConstraint!
   
   var features = Global.activeSeqObject.features
   var tableValues: [(label: String?, color: CGFloat)] = []
+  var selectedIndexPath = NSIndexPath()
   
   override func viewDidLoad()
   {
     super.viewDidLoad()
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "newHueSelected:", name: "hueChanged", object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardAppeared:", name: UIKeyboardDidShowNotification, object: nil)
   }
   
   override func viewWillAppear(animated: Bool)
@@ -29,6 +35,7 @@ class FeatureVC: UITableViewController, UITextFieldDelegate
       let newValues: (label: String?, color: CGFloat) = (label: feature.label, color: feature.color!)
       self.tableValues.append(newValues)
     }
+    self.tableViewDistFromBottom.constant = 0
   }
   
   override func viewWillDisappear(animated: Bool)
@@ -72,24 +79,39 @@ class FeatureVC: UITableViewController, UITextFieldDelegate
     Global.activeSeqObject.features = features
     Global.activeSeqObject = Global.activeSeqObject
   }
-
+  
+  // Scroll selected text field to visible
+  
+  // MARK : view resizing
+  func keyboardAppeared(notification: NSNotification)
+  {
+    let frame = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+    self.tableViewDistFromBottom.constant = frame.height
+    let timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "timedEvent", userInfo: nil, repeats: false)
+  }
+  
+  func timedEvent()
+  {
+    self.tableView.scrollToRowAtIndexPath(self.selectedIndexPath, atScrollPosition: .Bottom, animated: true)
+  }
+  
   // MARK: - Table view data source
 
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int
   {
     // #warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   {
     // #warning Incomplete method implementation.
     // Return the number of rows in the section.
     return features.count
   }
 
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   {
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
 
@@ -111,7 +133,7 @@ class FeatureVC: UITableViewController, UITextFieldDelegate
   }
 
   // Override to support editing the table view.
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
   {
     if editingStyle == .Delete
     {
@@ -125,15 +147,31 @@ class FeatureVC: UITableViewController, UITextFieldDelegate
   }
   
   // MARK : Text field delegate
+  func textFieldShouldReturn(textField: UITextField) -> Bool
+  {
+    textField.resignFirstResponder()
+    return true
+  }
+  
   func textFieldDidEndEditing(textField: UITextField)
   {
     if count(textField.text) > 0
     {
       let center = textField.center
-      let inTable = tableView.convertPoint(center, fromView: textField.superview)
-      let indexPath = tableView.indexPathForRowAtPoint(inTable)!
+      let inTable = self.tableView.convertPoint(center, fromView: textField.superview)
+      let indexPath = self.tableView.indexPathForRowAtPoint(inTable)!
       self.tableValues[indexPath.row].label = textField.text
+      self.tableViewDistFromBottom.constant = 0
     }
+  }
+  
+  // doesn't really work for scrolling...s
+  func textFieldDidBeginEditing(textField: UITextField)
+  {
+    let center = textField.center
+    let inTable = self.tableView.convertPoint(center, fromView: textField.superview)
+    let indexPath = self.tableView.indexPathForRowAtPoint(inTable)!
+    self.selectedIndexPath = indexPath
   }
   
   func newHueSelected(notification: NSNotification)

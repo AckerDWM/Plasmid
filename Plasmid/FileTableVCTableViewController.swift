@@ -47,6 +47,7 @@ class FileTableVCTableViewController: UITableViewController
       Global.activeSeqObject = GenbankParser.parseGenbank(contents)
       NSNotificationCenter.defaultCenter().postNotificationName("newSeqObject", object: nil)
     }
+    
   }
   
   // MARK: - Table view data source
