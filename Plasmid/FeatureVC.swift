@@ -69,7 +69,6 @@ class FeatureVC: UIViewController, UITableViewDataSource, UITableViewDelegate,  
           }
           if !hasLabel
           {
-            println(label)
             let labelQualifier: (definition: String, content: String?) = (definition: "\"label\"", content: "\"\(label)\"")
             features[i].qualifiers.append(labelQualifier)
           }

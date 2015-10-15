@@ -56,7 +56,7 @@ class DropboxManager
     completion(successful)
   }
   
-  static func openFile(dbPath: DBPath, completion: (String) -> Void)
+  static func openFile(dbPath: DBPath, completion: (String?) -> Void)
   {
     if DBFilesystem.sharedFilesystem() != nil
     {

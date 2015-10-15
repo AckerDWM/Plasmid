@@ -33,6 +33,7 @@ class FileTableVCTableViewController: UITableViewController
   }
 
   // MARK: - Table view delegate
+  
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
   {
     if let oldPath = Global.activeDBPath
@@ -41,11 +42,42 @@ class FileTableVCTableViewController: UITableViewController
     }
     let path = self.files[indexPath.row]
     DropboxManager.openFile(path)
+    {
+      optionalContents in
+      if let contents = optionalContents
       {
-      contents in
-      Global.activeDBPath = path
-      Global.activeSeqObject = GenbankParser.parseGenbank(contents)
-      NSNotificationCenter.defaultCenter().postNotificationName("newSeqObject", object: nil)
+        if path.stringValue().pathExtension == "gb"
+        {
+          Global.activeDBPath = path
+          Global.activeSeqObject = GenbankParser.parseGenbank(contents)
+          NSNotificationCenter.defaultCenter().postNotificationName("newSeqObject", object: nil)
+        }
+        else if path.stringValue().pathExtension == "fasta"
+        {
+          Global.activeSeqObject = parseFasta(contents)
+          var newPath = path.stringValue().stringByDeletingPathExtension.lastPathComponent.stringByAppendingPathExtension("gb")!
+          DropboxManager.createFile(newPath, contents: Global.activeSeqObject.stringRepresentation)
+          {
+            () in
+            let newDBPath = DBPath.root().childPath(newPath)
+            Global.activeDBPath = newDBPath
+            NSNotificationCenter.defaultCenter().postNotificationName("newSeqObject", object: nil)
+            DropboxManager.deleteFile(path)
+            { result in
+              if result
+              {
+                self.tableView.reloadData()
+              }
+            }
+          }
+        }
+      }
+      else
+      {
+        let alert = UIAlertController(title: "Error reading file", message: "If reading continues to fail, inspect your sequence file for formatting errors.", preferredStyle: .Alert)
+        let okBtn = UIAlertAction(title: "Ok", style: .Cancel, handler: { action in })
+        self.presentViewController(alert, animated: true, completion: nil)
+      }
     }
     
   }

@@ -175,9 +175,9 @@ class ScanVC: UIViewController, UITableViewDelegate, UITableViewDataSource
           var newFeatures: [feature] = []
           // read into csv
           var csv: [[String]] = []
-          if count(fileString) > 0
+          if count(fileString!) > 0
           {
-            let lines = fileString.componentsSeparatedByCharactersInSet(.newlineCharacterSet())
+            let lines = fileString!.componentsSeparatedByCharactersInSet(.newlineCharacterSet())
             var splitLines = [[String]](count: lines.count, repeatedValue: [])
             for (var i = 0; i < lines.count; i++)
             {
