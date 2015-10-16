@@ -65,7 +65,7 @@ class MapView: UIView
         for arc in arcs
         {
           let intersection = NSIntersectionRange(newArc.range, arc.range)
-          if intersection.length > 0
+          if intersection.length > 0 && newArc.ring == arc.ring
           {
             newArc.ring++
           }
