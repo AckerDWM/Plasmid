@@ -3,7 +3,6 @@
 An iOS app for DNA sequence visualization and automated annotation
 
 ![](https://github.com/AckerDWM/Plasmid/blob/master/us-iphone-1-plasmid.jpeg)
-![](https://github.com/AckerDWM/Plasmid/blob/master/us-iphone-2-plasmid.jpeg)
 ![](https://github.com/AckerDWM/Plasmid/blob/master/us-iphone-5-plasmid.jpeg)
 
 Experience unequalled convenience and mobility as Plasmid lets you visualize, annotate, and manage your DNA sequence files quickly and easily on your iDevice.
